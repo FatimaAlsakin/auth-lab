@@ -13,8 +13,8 @@ router.put('/toggle-admin/:uID', isAdmin, async(req, res) =>{
     res.redirect('/admin')
 } )
 
-router.delete('/delete/:uID', isAdmin, async(req, res) =>{
-    const user = await User.findByIdAndDelete(req.params.uID)
+router.put('/delete/:uID', isAdmin, async(req, res) =>{
+    const user = await User.findByIdAndUpdate(req.params.uID , {isDeleted: true})
     res.redirect('/admin')
 } )
 

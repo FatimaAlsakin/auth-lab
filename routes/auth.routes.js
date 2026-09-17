@@ -56,7 +56,9 @@ router.post("/sign-in", async (req, res) => {
   if (!validPassword) {
     return res.send("Login failed. Please try again.");
   }
-
+  
+  if(userInDatabase.isDeleted)
+    return res.send('This user is no longer available ')
   // There is a user AND they had the correct password. Time to make a session!
   // Avoid storing the password, even in hashed format, in the session
   // If there is other data you want to save to `req.session.user`, do so here!
